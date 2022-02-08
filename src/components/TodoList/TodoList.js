@@ -1,13 +1,14 @@
 import React from 'react';
+import './TodoList.css';
 
 function TodoList(props) {
     return (
-        <React.Fragment>
-            <section>
+        <section>
+            <ul>
                 {props.children}
-            </section>
-        </React.Fragment>
-    )
+            </ul>
+        </section>
+    );
 }
 
-export { TodoList };
+export {TodoList};
