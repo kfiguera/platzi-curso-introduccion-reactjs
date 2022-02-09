@@ -1,6 +1,6 @@
 import React from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {TodoCounter, TodoSearch, TodoList, TodoItem, CreateTodoButton} from "./components";
+import {AppUi} from "./AppUi";
 // import logo from './logo.svg';
 //import './App.css';
 
@@ -27,7 +27,7 @@ function App() {
     }
 
     const toggleCompleteTodos = (id) => {
-        const todoIndex = todos.findIndex(todo => todo.id == id);
+        const todoIndex = todos.findIndex(todo => todo.id === id);
         const newTodos = [...todos];
 
         (newTodos[todoIndex].completed === false)
@@ -37,38 +37,24 @@ function App() {
         setTodos(newTodos);
     };
     const deleteTodo = (id) => {
-        const todoIndex = todos.findIndex(todo => todo.id == id);
+        const todoIndex = todos.findIndex(todo => todo.id === id);
         const newTodos = [...todos];
         console.log(newTodos);
-        newTodos.splice(todoIndex,1);
+        newTodos.splice(todoIndex, 1);
         console.log(newTodos);
         setTodos(newTodos);
     };
 
     return (
-        <React.Fragment>
-            <TodoCounter
-                completed={completedTodos}
-                total={totalTodos}
-            />
-            <TodoSearch
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-            />
-            <TodoList>
-                {searchedTodos.map(todo => (
-                    <TodoItem
-                        key={todo.id}
-                        text={todo.text}
-                        completed={todo.completed}
-                        onToggleComplete={() => toggleCompleteTodos(todo.id)}
-                        onDelete={()=>deleteTodo(todo.id)}
-                    />
-                ))}
-            </TodoList>
-
-            <CreateTodoButton/>
-        </React.Fragment>
+        <AppUi
+            completedTodos={completedTodos}
+            totalTodos={totalTodos}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            searchedTodos={searchedTodos}
+            toggleCompleteTodos={toggleCompleteTodos}
+            deleteTodo={deleteTodo}
+        />
     );
 }
 
