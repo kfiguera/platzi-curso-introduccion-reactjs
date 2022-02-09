@@ -5,17 +5,15 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CloseIcon from '@mui/icons-material/Close';
 
 function TodoItem(props) {
-    const onComplete = () => {
-        alert(`Ya completaste la tarea: ${props.text}`);
-    };
-    const onDelete = () => {
-        alert(`Eliminaste la tarea: ${props.text}`);
-    };
+    const onToggleComplete = props.onToggleComplete;
+    const onDelete = props.onDelete;
+
+
     return (
         <li className="TodoItem">
             <span
                 className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}
-                onClick={onComplete}
+                onClick={onToggleComplete}
             >
                 {
                     props.completed
