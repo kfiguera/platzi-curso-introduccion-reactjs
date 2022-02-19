@@ -1,26 +1,14 @@
 import React from 'react';
-import {v4 as uuidv4} from 'uuid';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import {AppUi} from "./AppUi";
+// import {v4 as uuidv4} from 'uuid';
 // import logo from './logo.svg';
 //import './App.css';
 
- const defaultTodos = [
-     {id: uuidv4(), text: 'Cortar cebolla', completed: false},
-     {id: uuidv4(), text: 'Tomar el curso', completed: true},
-     {id: uuidv4(), text: 'Ir a dormir', completed: false},
- ];
 
 function App() {
-    const localStorageTodos = localStorage.getItem('TODOS_V1');
-    let parsedTodos;
-    if (!localStorageTodos) {
-        localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-        parsedTodos = defaultTodos;
-    } else {
-        parsedTodos = JSON.parse(localStorageTodos);
-    }
+    const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
 
-    const [todos, setTodos] = React.useState(parsedTodos);
     const [searchValue, setSearchValue] = React.useState('');
     const completedTodos = todos.filter(todo => !!todo.completed).length;
     const totalTodos = todos.length;
@@ -33,11 +21,6 @@ function App() {
         });
     } else {
         searchedTodos = todos;
-    }
-    const saveTodos = (newTodos) => {
-        const stringigiedTodos = JSON.stringify(newTodos);
-        localStorage.setItem('TODOS_V1', stringigiedTodos);
-        setTodos(newTodos);
     }
     const toggleCompleteTodos = (id) => {
         const todoIndex = todos.findIndex(todo => todo.id === id);
