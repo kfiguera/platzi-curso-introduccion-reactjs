@@ -1,12 +1,14 @@
 import React from 'react';
-import {TodoContext, TodoCounter, TodoSearch, TodoList, TodoItem, CreateTodoButton} from "../components";
+import {TodoContext, TodoCounter, TodoSearch, TodoList, TodoItem, CreateTodoButton, Modal} from "../components";
 
 
 function AppUi() {
     const {
         searchedTodos,
         toggleCompleteTodos,
-        deleteTodo
+        deleteTodo,
+        openModal,
+        setOpenModal,
     } = React.useContext(TodoContext);
     return (
         <React.Fragment>
@@ -23,7 +25,13 @@ function AppUi() {
                     />
                 ))}
             </TodoList>
-            <CreateTodoButton/>
+            {openModal && (
+                <Modal>
+                    <p>Prueba</p>
+                </Modal>
+            )}
+
+            <CreateTodoButton />
         </React.Fragment>
     );
 }
