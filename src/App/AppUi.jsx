@@ -1,5 +1,14 @@
 import React from 'react';
-import {TodoContext, TodoCounter, TodoSearch, TodoList, TodoItem, CreateTodoButton, Modal} from "../components";
+import {
+    TodoContext,
+    TodoCounter,
+    TodoSearch,
+    TodoList,
+    TodoItem,
+    CreateTodoButton,
+    Modal,
+    TodoForm
+} from "../components";
 
 
 function AppUi() {
@@ -27,11 +36,11 @@ function AppUi() {
             </TodoList>
             {openModal && (
                 <Modal>
-                    <p>Prueba</p>
+                    <TodoForm/>
                 </Modal>
             )}
 
-            <CreateTodoButton />
+            <CreateTodoButton/>
         </React.Fragment>
     );
 }
