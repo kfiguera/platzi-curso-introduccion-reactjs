@@ -3,26 +3,26 @@ import {TodoContext, TodoCounter, TodoSearch, TodoList, TodoItem, CreateTodoButt
 
 
 function AppUi() {
+    const {
+        searchedTodos,
+        toggleCompleteTodos,
+        deleteTodo
+    } = React.useContext(TodoContext);
     return (
         <React.Fragment>
             <TodoCounter/>
             <TodoSearch/>
-            <TodoContext.Consumer>
-                {({searchedTodos, toggleCompleteTodos, deleteTodo}) => (
-                    <TodoList>
-                        {searchedTodos.map(todo => (
-                            <TodoItem
-                                key={todo.id}
-                                text={todo.text}
-                                completed={todo.completed}
-                                onToggleComplete={() => toggleCompleteTodos(todo.id)}
-                                onDelete={() => deleteTodo(todo.id)}
-                            />
-                        ))}
-                    </TodoList>
-                )}
-
-            </TodoContext.Consumer>
+            <TodoList>
+                {searchedTodos.map(todo => (
+                    <TodoItem
+                        key={todo.id}
+                        text={todo.text}
+                        completed={todo.completed}
+                        onToggleComplete={() => toggleCompleteTodos(todo.id)}
+                        onDelete={() => deleteTodo(todo.id)}
+                    />
+                ))}
+            </TodoList>
             <CreateTodoButton/>
         </React.Fragment>
     );
